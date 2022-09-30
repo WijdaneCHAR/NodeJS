@@ -14,12 +14,17 @@ const connection = mysql.createConnection({
 })
 app.use(express.json())
 
+app.set('view engine', 'hbs')
+
 app.get('/users',(req,res)=>{
     const query = 'SELECT * FROM users'
 
     connection.query(query,(err,data)=>{
         err ? res.json({ msg : "Error"}) : res.json(data)
     })
+    // res.render('index',{
+    //     name : "hello"
+    // })
 })
 
 app.post('/users',(req,res)=>{
